@@ -1,0 +1,167 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  /* fallback for IE and older browsers */
+  height: 100vh;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: auto;
+  /* required to allow content to expand vertically without overflow */
+  width: auto;
+  min-height: 100%;
+  /* fallback for IE and older browsers */
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: rgb(245, 245, 245);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.search-section {
+  width: 70%;
+  margin: 20px auto;
+}
+
+.search-section input {
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.search-section .btn-search {
+    font-size: 1rem;
+  letter-spacing: 1px;
+    width: 6rem;
+    color: #fff;
+    border: none;
+  }
+
+.filters {
+  display: flex;
+  width: 70%;
+}
+
+ .filters .filter-btn {
+    margin: 2rem;
+    margin-left: 0;
+    padding: 1rem;
+    display: block;
+    border: 1px solid #888;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+
+ .filters .active {
+    background: #0069d9;
+    color: #fff;
+  }
+
+ .filters .full-time-checkbox>input {
+      margin-top: 0.5rem;
+    }
+
+.filters .full-time-checkbox > label {
+      margin-left: 1rem;
+    }
+
+
+#loader {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 99999;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+#loader .message {
+  position: relative;
+  font-size: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-10%);
+  color: #fff;
+}
+
+.loader-open {
+  overflow: hidden;
+}
+
+.hide {
+  display: none;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.errorMsg {
+  max-width: 70%;
+  margin: 0 auto;
+  color: #f21e08;
+  padding: 1rem;
+  letter-spacing: 2px;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.load-more > button {
+    border: none;
+    background: #0e7bff;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .search-section {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .search-form .form-row {
+    flex-direction: column;
+  }
+  
+  .search-section .btn-search {
+    width: 100%;
+  }
+}
