@@ -23,12 +23,9 @@ const NavBar = () => {
           <NavLink to='/github-jobs/' className='nav-link'>
             Github Jobs
           </NavLink>
-          {/* <NavLink to='/tracker/' className='nav-link'>
-            Tracker
+          <NavLink to='/hacker-news/' className='nav-link'>
+            Hacker News Clone
           </NavLink>
-          <NavLink to='/more/' className='nav-link'>
-            More
-          </NavLink> */}
         </Nav>
         <Nav>⭐</Nav>
       </Navbar.Collapse>
