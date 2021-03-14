@@ -1,6 +1,7 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -31,6 +32,12 @@ code {
     monospace;
 }
 
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .search-section {
   width: 70%;
   margin: 20px auto;
@@ -54,29 +61,28 @@ code {
   width: 70%;
 }
 
- .filters .filter-btn {
-    margin: 2rem;
-    margin-left: 0;
-    padding: 1rem;
-    display: block;
-    border: 1px solid #888;
-    border-radius: 25px;
-    cursor: pointer;
-  }
+.filters .filter-btn {
+  margin: 2rem;
+  margin-left: 0;
+  padding: 1rem;
+  display: block;
+  border: 1px solid #888;
+  border-radius: 25px;
+  cursor: pointer;
+}
 
- .filters .active {
-    background: #0069d9;
-    color: #fff;
-  }
+.filters .active {
+  background: #0069d9;
+  color: #fff;
+}
 
- .filters .full-time-checkbox>input {
-      margin-top: 0.5rem;
-    }
+.filters .full-time-checkbox>input {
+    margin-top: 0.5rem;
+}
 
 .filters .full-time-checkbox > label {
-      margin-left: 1rem;
-    }
-
+    margin-left: 1rem;
+}
 
 #loader {
   width: 100%;
@@ -134,6 +140,59 @@ code {
     outline: none;
 }
 
+/* Hacker News */
+.active {
+  font-weight: bold;
+}
+
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-link a {
+  margin: 10px;
+  text-transform: uppercase;
+  color: inherit;
+  letter-spacing: 2px;
+}
+
+.story {
+  width: 80%;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.story-title {
+  margin-bottom: 4px
+}
+
+.story-title a:link,
+.story-title a:visited {
+  font-size: 18px;
+  color: #0069d9;
+}
+.story-title a:hover,
+.story-title a:active {
+  text-decoration: none;
+}
+
+.story-info {
+  color: #0e7bff;
+}
+
+.story-info span {
+  margin: 4px;
+}
+
+.story-info a {
+  color: inherit;
+}
+/* Hacker News */
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -163,5 +222,25 @@ code {
   
   .search-section .btn-search {
     width: 100%;
+  }
+}
+
+/* Hacker News */
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .nav-link {
+    flex-direction: column;
+  }
+
+  .story {
+    width: 90%;
   }
 }
