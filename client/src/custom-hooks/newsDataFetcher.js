@@ -7,28 +7,39 @@ import { getStories } from '../utils/hackerNewsApis';
  * @param {top, new, best} type
  */
 const useDataFetcher = (type) => {
-  const [stories, setStories] = useState([]);
+  const [stories, setStories] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    getStories(type)
-      .then((stories) => {
-        // Once the response is received, we set the stories array with the response from the API
-        setStories(stories);
-        setIsLoading(false); // Once we get the complete response we set isLoading to false
-      })
-      .catch(() => {
-        setIsLoading(false); // Set the isLoading state to false so if there is an error, the loader will be hidden.
-      });
+    // added an if condition, so only when there is no already loaded top, new or best story inside the stories object, we will make an API call.
 
-    // Inside the apis.js file the getStories function is declared as async so it will always return a promise.
+    if (!stories[type]) {
+      // we initially set the stories state to empty object {} so initially there will not be any top, new or best stories inside the stories object.
+
+      setIsLoading(true);
+      getStories(type)
+        .then((newStories) => {
+          // Once the response is received, we set the stories array with the response from the API
+          // setStories(stories);
+          console.log('stories', newStories);
+          setStories({
+            ...stories,
+            [type]: newStories,
+          });
+          setIsLoading(false); // Once we get the complete response we set isLoading to false
+        })
+        .catch(() => {
+          setIsLoading(false); // Set the isLoading state to false so if there is an error, the loader will be hidden.
+        });
+    }
+
+    // Inside the hackerNewsApis.js file the getStories function is declared as async so it will always return a promise.
     // Therefore, we have added the .then handler to the getStories function to get the actual data from the response.
-  }, [type]);
+  }, [type, stories]);
   // We have added type as a dependency to the useEffect hook as a second parameter inside the array. So whenever we click on the navigation menu (for top, latest or best stories), the type will change and this useEffect hook will run again to make an API call to get the stories related to that type.
 
   // We return the isLoading and stories from the hook in an object
-  return { isLoading, stories };
+  return { isLoading, stories: stories[type] };
 };
 
 export default useDataFetcher;
