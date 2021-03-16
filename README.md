@@ -237,7 +237,52 @@ The `img` tag has `onLoad` handler added which will be triggered when the image 
 
 # Hacker News Clone
 
-To be written...
+We will be using the Hackernews API from [this url](https://github.com/HackerNews/API).
+
+API                                   | Link
+--------------------------------------| --------------------------------------------------------------
+API to get top stories, use this URL  | https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty
+API to get new stories, use this URL  | https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty
+API to get best stories, use this URL | https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty
+
+Each of the above stories API returns only an array of IDs representing a story.
+
+So to get the details of that particular story, we need to make another API call.
+
+API to get story details, use this URL: https://hacker-news.firebaseio.com/v0/item/story_id.json?print=pretty
+
+For example: https://hacker-news.firebaseio.com/v0/item/26061935.json?print=pretty
+
+In the [getStories function](client/src/utils/hackerNewsApis.js) we pass the type of story we want (`top`, `new` or `best`). Then we make an API call to the respective `.json` URL provided at the start of this article.
+
+Note that we have declared the function as `async` so we can use the `await` keyword to call the API and wait for the response to come.
+
+As the `axios` library always returns the result in the `.data` property of the response, we take out that property and rename it to `storyIds` because the API returns an array of story IDs.
+
+```js
+const res = await axios.get(`${BASE_API_URL}/${type}stories.json`);
+const storyIds = res.data;
+);
+```
+Since we get an array of story IDs back, instead of making separate API calls for each `id` and then waiting for the previous one to finish, we use the `Promise.all` method to make API calls simultaneously for all the story ids.
+
+```js
+const stories = await Promise.all(storyIds.slice(0, 30).map(getStory));
+
+// .map(getStory) is a simplified version of .map((storyId) => getStory(storyId))
+```
+Here, we use the Array slice method to take only the first 30 story ids so the data will load faster.
+
+Then we use the Array map method to call the [getStory function](client/src/utils/hackerNewsApis.js) to make an API call to the individual story item by passing the `storyId` to it.
+
+In the API response, we get the time of the story in seconds. So in the [Story component](client/src/components/HackerNews/Story.js), we multiply it by 1000 to convert it to milliseconds so we can display the correct date in proper format using JavaScript's `toLocaleDateString` method:
+
+```js
+{new Date(time * 1000).toLocaleDateString('en-US', {
+  hour: 'numeric',
+  minute: 'numeric',
+})}
+```
 
 ---
 
